@@ -1,0 +1,30 @@
+{
+  "name": "linhstore",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdo3739/linhStore.git"
+  },
+  "keywords": [
+    "Vietnam",
+    "store",
+    "merchandise",
+    "online",
+    "shopping"
+  ],
+  "author": "Michael Do",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mdo3739/linhStore/issues"
+  },
+  "homepage": "https://github.com/mdo3739/linhStore#readme",
+  "dependencies": {
+    "express": "^4.16.1",
+    "mongoose": "^4.12.1"
+  }
+}
