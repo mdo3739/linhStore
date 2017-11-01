@@ -2,6 +2,7 @@ import React from 'react';
 import { hydrate } from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AppRoutes } from './components/AppRoutes';
+import Layout from './components/Layout';
 
 const AppClient = () => (
 	<Router>
@@ -10,5 +11,5 @@ const AppClient = () => (
 );
 
 window.onload = () => {
-  hydrate(<AppClient />, document.getElementById('main'));
+  	hydrate(<AppClient />, document.getElementById('main'));
 };

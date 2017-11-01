@@ -20,7 +20,8 @@ const client = {
         },
       },
     ],
-  }
+  },
+  devtool: "source-map"
 };
 
 const server = {
@@ -49,7 +50,7 @@ const server = {
         },
       },
     ],
-  },
+  }
 };
 
 export default [client, server];

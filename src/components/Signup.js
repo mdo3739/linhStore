@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+import Alert from './Alert';
 
-class Signup extends React.Component {
+class Signup extends React.Component{
 	constructor(props){
 		super(props);
 
@@ -11,13 +12,14 @@ class Signup extends React.Component {
 		};
 	}
 
+
 	onSubmit(){
 		axios.post('/api/user', {
-			email: this.state.email,
+			email: this.state.email.toUpperCase(),
 			password: this.state.password
 		})
-		.then((res) => {
-			console.log('SUCCESS');
+		.then( res => {
+			console.log(res.data);
 		})
 		.catch( err => {
 			console.log(err);
@@ -25,34 +27,39 @@ class Signup extends React.Component {
 	}
 
 	render() {
-
 		return (
 			<div className='col-md-3'>
-				<div className='form-group row'>
-				
-					<div className='col-md-4'>
-						<label>Email: </label>
+				<form>
+					<div className='form-group row'>
+					
+						<div className='col-md-4'>
+							<label>Email: </label>
+						</div>
+						<div className='col-md-8' >
+							<input 
+								type='text' 
+								className='form-control' 
+								value={this.state.email}
+								onChange={event => this.setState({email: event.target.value})} />
+						</div>
 					</div>
-					<div className='col-md-8' >
-						<input 
-							type='text' 
-							className='form-control' 
-							value={this.state.email}
-							onChange={event => this.setState({email: event.target.value})} />
-					</div>
-				</div>
 
-				<div className='form-group row'>
-					<div className='col-md-4'>
-						<label> Password </label>
+					<div className='form-group row'>
+						<div className='col-md-4'>
+							<label> Password </label>
+						</div>
+						<div className='col-md-8' >
+							<input type='password' 
+							className='form-control'
+							value={this.state.password}
+							onChange={event => this.setState({password: event.target.value})} />
+						</div>
 					</div>
-					<div className='col-md-8' >
-						<input type='password' className='form-control' />
+					<div className='form-group row'>
+						<button className='btn btn-primary' onClick={this.onSubmit.bind(this)} >Submit</button>
 					</div>
-				</div>
-				<div className='form-group row'>
-					<button className='btn btn-primary' onClick={this.onSubmit} >Submit</button>
-				</div>
+				</form>
+				<Alert type='success' message="FINALLY" />
 			</div>
 		);
 	}

@@ -53,7 +53,7 @@ app.get('*', (req, res) => {
       status = 404;
     }
 
-  return res.status(status).render('index', { markup });
+  	return res.status(status).render('index', { markup });
 });
 
 mongoose.connect(process.env.MONGODB, {useMongoClient: true}, function(err){

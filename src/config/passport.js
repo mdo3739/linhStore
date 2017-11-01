@@ -3,13 +3,15 @@ const mongoose = require('mongoose');
 var User = mongoose.model('User');
 
 module.exports = function(passport){
-	passport.serializeUser(function(user,done) {
-		done(null, user.id);
+	passport.serializeUser(function(user, done) {
+		done(null, user._id);
 	});
 
 	passport.deserializeUser((id, done) => {
 		User.findById(id, (err, user) => {
 			done(err, user);
+
+
 		});
 	});
 
@@ -20,6 +22,7 @@ module.exports = function(passport){
 		passReqToCallback: true
 	},
 	(req, email, password, done) =>{
+
 		process.nextTick( () => {
 			User.findOne({email: email}, (err, user) => {
 				if(err){ return done(err);}
@@ -29,10 +32,11 @@ module.exports = function(passport){
 					var newUser = new User();
 
 					newUser.email = email;
-					newUser.password = newUser.generateHash(password);
-
+					//newUser.password = newUser.generateHash(password);
+					newUser.password = password;
 					newUser.save(err =>{
 						if(err){ throw err;}
+						console.log("User Created");
 						return done(null, newUser);
 					});
 				}
