@@ -57,9 +57,10 @@ app.get('*', (req, res) => {
 });
 
 mongoose.connect(process.env.MONGODB, {useMongoClient: true}, function(err){
-	if(err) throw err;
+	if(err) {throw err;}
 	console.log('Connection Successful');
 });
+
 app.listen(process.env.PORT, function(){
 	console.log('Listening on Port: ', process.env.PORT);
 });

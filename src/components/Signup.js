@@ -14,7 +14,7 @@ class Signup extends React.Component{
 
 
 	onSubmit(){
-		axios.post('/api/user', {
+		axios.post('/api/user/signup', {
 			email: this.state.email.toUpperCase(),
 			password: this.state.password
 		})
@@ -56,7 +56,7 @@ class Signup extends React.Component{
 						</div>
 					</div>
 					<div className='form-group row'>
-						<button className='btn btn-primary' onClick={this.onSubmit.bind(this)} >Submit</button>
+						<button className='btn btn-primary' onClick={this.onSubmit.bind(this)} >Register</button>
 					</div>
 				</form>
 				<Alert type='success' message="FINALLY" />

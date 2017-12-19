@@ -1,6 +1,15 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import Alert from 'react-alert';
+import {Route, Switch} from 'react-router-dom';
+import Login from './Login';
+import Signup from './Signup';
+
+const PageNotFound = () => (
+	<div>
+		<h1>Page Not Found</h1>
+	</div>
+);
 
 class Layout extends React.Component {
 	constructor(props){
@@ -12,7 +21,6 @@ class Layout extends React.Component {
 			time: 5000,
 			transition: 'scale'
 		};
-
 		this.state = {active: ''};
 	}
 
@@ -22,8 +30,6 @@ class Layout extends React.Component {
 		} else return 'nav-link';
 	}
 
-	
-
 	showAlert(type, text) {
 		this.msg.show(text, {
 			type: type,
@@ -31,6 +37,7 @@ class Layout extends React.Component {
 	}
 
 	render(){
+
 		return (
 			<div className="app-container">
 				<header>
@@ -47,7 +54,16 @@ class Layout extends React.Component {
 							onClick={() => this.setState({active: 'login'})}>Login</Link>
 					</nav>
 				</header>
-				<div className="app-content">{this.props.children}</div>
+
+				<div className="app-content">
+					<Switch>
+						<Route exact path='/' />
+						<Route exact path='/signup' render={()=> <Signup show={this.showAlert.bind(this, 'error', "Booyah")} />}  />
+						<Route exact path='/login' component={Login} />
+				    	<Route component={PageNotFound} />
+					</Switch>
+				</div>
+
 				<footer>
 					<p><Link to='/hello' > Footer </Link> </p>
 					<Alert ref={a =>this.msg = a} {...this.alertOptions} />

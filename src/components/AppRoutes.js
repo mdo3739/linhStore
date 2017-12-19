@@ -12,11 +12,5 @@ const PageNotFound = () => (
 
 export const AppRoutes = () => (
 	<Layout>
-		<Switch>
-			<Route exact path='/' />
-			<Route exact path='/signup' component={Signup}  />
-			<Route exact path='/login' component={Login} />
-	    	<Route component={PageNotFound} />
-		</Switch>
 	</Layout> 
 );
